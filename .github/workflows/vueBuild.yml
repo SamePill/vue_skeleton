@@ -1,0 +1,86 @@
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+# Warning sftp Deploy can't delete useless files.
+
+name: vueBuild
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'vue skeleton build manually'
+        required: true
+        default: 'by SamePill'
+      home:
+        description: 'github action'
+        required: false
+        default: 'by SamePill'
+
+  # push:
+  #   branches: [ master ]
+  #   paths-ignore:
+  #     - '.github/**'
+  #     - '.circleci/**'
+  #   tags:        
+  #     - v1             # Push events to v1 tag
+  #     - v1.*           # Push events to v1.0, v1.1, and v1.9 tags
+  #     - v2.*           # Push events to v2 tags
+  #     - v2.*           # Push events to v2.0, v2.1, and v2.9 tags
+  # # pull_request:
+  # #   branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    env:
+      HOST_REPO: /var/www/github_vueSkeleton
+    steps:
+    
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      # - run: npm run build --if-present
+      - run: npm run build --if-present
+      # - run: npm test
+
+      # - name: rsync deployments
+      #   uses: burnett01/rsync-deployments@5.2
+      #   with:
+      #     switches: -avzr --delete
+      #     path: dist/
+      #     remote_path: ${{ env.HOST_REPO }}
+      #     remote_host: ${{ secrets.HOST_0814 }}
+      #     remote_port: ${{ secrets.HOST_0814_SSH_PORT }}
+      #     remote_user: ${{ secrets.HOST_0814_USER_ID }}
+      #     remote_key: ${{ secrets.HOST_0814_PROVATE_KEY }}
+
+      # # server build
+      #   - name: pullResource
+      #     uses: appleboy/ssh-action@master
+      #       with:
+      #         host: ${{ secrets.HOST_0814 }}
+      #         username: ${{ secrets.HOST_0814_USER_ID }}
+      #         key: ${{ secrets.HOST_0814_PROVATE_KEY }}
+      #         port: ${{ secrets.HOST_0814_SSH_PORT }}
+      #         script: |
+      #           If [ ! -d ${{ env.HOST_REPO }}] ; then
+      #             mkdir ${{ env.HOST_REPO }}
+      #           fI
+      #           cd ${{ env.HOST_REPO }}
+      #           git pull https://${{ secrets.DEPLOY_TOKEN }}@github.com/SamePill/vue_skeleton.git
+
+      #           npm install
+      #           npm run build

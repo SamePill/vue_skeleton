@@ -1,0 +1,47 @@
+{
+  "messages": {
+    "email": "email",
+    "NO_PRE_POST" : "No more previous contents",
+    "NO_NEXT_POST" : "No more next contents",
+    "NO_MORE_POST" : "No more contents",
+    "CMPL_WARNING_1" : "If you make a false report, you may be restricted from using the service.",
+    "CMPL_WARNING_2" : "Please report carefully."    
+  },
+  "errors": {
+    "BAD_TOKEN": "Token expired"
+  },
+  "user":{
+    "LOGIN" : "LogIn",
+    "LOGOUT" : "LogOut",
+    "SIGNIN" : "SignIn",
+    "PROFILE" : "Profile"
+  },
+  "buttons" : {
+    "CANCEL" : "Cancel",
+    "CONFIRM" : "Confirm",
+    "SAVE" : "Save",
+    "MODIFY" : "Modify",
+    "CLOSE" : "Close",
+    "MORE" : "More"
+  },
+  "post" : {
+    "REG_PAGE_TITLE" : "",
+    "VIEW_PAGE_TITLE" : "",
+    "EDIT_PAGE_TITLE" : "",
+    "TITLE" : "Title",
+    "CONTENTS" : "Contents",
+    "TAG" : "Tag",
+    "DECLARATION" : "Declaration",
+    "PREVIOUS" : "Previous",
+    "NEXT" : "Next",
+    "SHARE" : "Share",
+    "LIKE" : "Like",
+    "COPY_URL" : "URL is copied."
+  },
+  "cmpln" :{
+    "PAGE_TITLE" : "Declaration",
+    "REPORT_CONTENT" : "Report content",
+    "WARNING" : "Warning",
+    "REPORT_TYPE" : "Report Type"
+  }
+}

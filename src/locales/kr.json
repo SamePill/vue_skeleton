@@ -1,0 +1,47 @@
+{
+  "messages": {
+    "email": "email",
+    "NO_PRE_POST" : "이전 글이 없습니다.",
+    "NO_NEXT_POST" : "다음 글이 없습니다.",
+    "NO_MORE_POST" : "더 이상 글이 없습니다.",
+    "CMPL_WARNING_1" : "허위 신고하는 경우 서비스 이용이 제한 될 수 있습니다.",
+    "CMPL_WARNING_2" : "신중하게 신고하여 주시기 바랍니다."
+  },
+  "errors": {
+    "BAD_TOKEN": "Token expired"
+  },
+  "user":{
+    "LOGIN" : "로그인",
+    "LOGOUT" : "로그아웃",
+    "SIGNIN" : "가입",
+    "PROFILE" : "내정보"
+  },
+  "buttons" : {
+    "CANCEL" : "취소",
+    "CONFIRM" : "확인",
+    "SAVE" : "저장",
+    "MODIFY" : "수정",
+    "CLOSE" : "닫기",
+    "MORE" : "더 보기"
+  },
+  "post" : {
+    "REG_PAGE_TITLE" : "",
+    "VIEW_PAGE_TITLE" : "",
+    "EDIT_PAGE_TITLE" : "",
+    "TITLE" : "제목",
+    "CONTENTS" : "내용",
+    "TAG" : "태그",
+    "DECLARATION" : "신고",
+    "PREVIOUS" : "이전",
+    "NEXT" : "다음",
+    "SHARE" : "공유",
+    "LIKE" : "좋아요",
+    "COPY_URL" : "URL이 복사 되었습니다."
+  },
+  "cmpln" :{
+    "PAGE_TITLE" : "신고",
+    "REPORT_CONTENT" : "신고 내용",
+    "WARNING" : "주의사항",
+    "REPORT_TYPE" : "신고 유형"
+  }
+}

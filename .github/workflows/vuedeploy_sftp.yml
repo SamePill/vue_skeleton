@@ -1,0 +1,55 @@
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+# Warning sftp Deploy can't delete useless files.
+
+name: Deploy with sftp
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'vue skeleton sever side build manually'
+        required: true
+        default: 'by SamePill'
+      home:
+        description: 'github action'
+        required: false
+        default: 'by SamePill'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    env:
+      HOST_REPO: /var/www/github_vueSkeleton
+    steps:
+    
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      # - run: npm run build --if-present
+      - run: npm run build --if-present
+      # - run: npm test
+
+      - name: deploy file to server
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        with:
+          username: ${{ secrets.HOST_0814_USER_ID }}
+          server: ${{ secrets.HOST_0814 }}
+          ssh_private_key: ${{ secrets.HOST_0814_PROVATE_KEY }}
+          local_path: './build/*'
+          remote_path: '/var/www/react-app'
+          args: '-o ConnectTimeout=5'
+
