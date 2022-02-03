@@ -16,6 +16,11 @@
     "SIGNIN" : "가입",
     "PROFILE" : "내정보"
   },
+  "menus":{
+    "SAMPLE" : "샘플",
+    "GALLERY" : "갤러리",
+    "TABLE" : "테이블"
+  },
   "buttons" : {
     "CANCEL" : "취소",
     "CONFIRM" : "확인",

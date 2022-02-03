@@ -242,14 +242,20 @@ export default {
       //sidebarShow: true,
       menuItems: [
         {
-          menuNm: "Sample",
+          menuNm: this.$t("menus.SAMPLE"),
           menuCd: "Sample",
           icon: "mdi-home",
           notadd: false
         },
         {
-          menuNm: "Gallery",
+          menuNm: this.$t("menus.GALLERY"),
           menuCd: "Gallery",
+          icon: "mdi-home",
+          notadd: false
+        },
+        {
+          menuNm: this.$t("menus.TABLE"),
+          menuCd: "TableList",
           icon: "mdi-home",
           notadd: false
         },
