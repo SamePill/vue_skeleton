@@ -56,25 +56,28 @@ jobs:
       - run: npm run build --if-present
       # - run: npm test
 
+      # ##  rsync deployments
       # - name: rsync deployments
       #   uses: burnett01/rsync-deployments@5.2
+      #   env:
+      #     HOST_REPO: /var/www/github_vueSkeleton/
       #   with:
       #     switches: -avzr --delete
       #     path: dist/
       #     remote_path: ${{ env.HOST_REPO }}
-      #     remote_host: ${{ secrets.HOST_0814 }}
-      #     remote_port: ${{ secrets.HOST_0814_SSH_PORT }}
-      #     remote_user: ${{ secrets.HOST_0814_USER_ID }}
-      #     remote_key: ${{ secrets.HOST_0814_PROVATE_KEY }}
+      #     remote_host: ${{ secrets.HOST_15_IP }}
+      #     remote_port: ${{ secrets.HOST_15_PORT }}
+      #     remote_user: ${{ secrets.HOST_15_USERID }}
+      #     remote_key: ${{ secrets.HOST_15_PRI_KEY }}
 
       # # server build
       #   - name: pullResource
       #     uses: appleboy/ssh-action@master
       #       with:
-      #         host: ${{ secrets.HOST_0814 }}
-      #         username: ${{ secrets.HOST_0814_USER_ID }}
-      #         key: ${{ secrets.HOST_0814_PROVATE_KEY }}
-      #         port: ${{ secrets.HOST_0814_SSH_PORT }}
+      #         host: ${{ secrets.HOST_15_IP }}
+      #         username: ${{ secrets.HOST_15_USERID }}
+      #         key: ${{ secrets.HOST_15_PRI_KEY }}
+      #         port: ${{ secrets.HOST_15_PORT }}
       #         script: |
       #           If [ ! -d ${{ env.HOST_REPO }}] ; then
       #             mkdir ${{ env.HOST_REPO }}
@@ -84,3 +87,15 @@ jobs:
 
       #           npm install
       #           npm run build
+
+
+      # ## deploy sftp
+      # - name: deploy file to server
+      #   uses: wlixcc/SFTP-Deploy-Action@v1.0
+      #   with:
+      #     username: ${{ secrets.HOST_15_USERID }}
+      #     server: ${{ secrets.HOST_15_IP }}
+      #     ssh_private_key: ${{ secrets.HOST_15_PRI_KEY }}
+      #     local_path: './build/*'
+      #     remote_path: ${{ env.HOST_REPO }}
+      #     args: '-o ConnectTimeout=5'

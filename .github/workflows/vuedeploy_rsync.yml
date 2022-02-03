@@ -6,10 +6,11 @@
 name: Deploy with Rsync
 
 on:
+  # manually deploy
   workflow_dispatch:
     inputs:
       name:
-        description: 'vue skeleton build manually'
+        description: 'vue skeleton build manually and deploy by rsync'
         required: true
         default: 'by SamePill'
       home:
@@ -54,7 +55,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      # - run: npm run build --if-present
       - run: npm run build --if-present
       # - run: npm test
 
@@ -71,7 +71,7 @@ jobs:
           switches: -avzr --delete
           path: dist/
           remote_path: ${{ env.HOST_REPO }}
-          remote_host: ${{ secrets.HOST_0814 }}
-          remote_port: ${{ secrets.HOST_0814_SSH_PORT }}
-          remote_user: ${{ secrets.HOST_0814_USER_ID }}
-          remote_key: ${{ secrets.HOST_0814_PROVATE_KEY }}
+          remote_host: ${{ secrets.HOST_15_IP }}
+          remote_port: ${{ secrets.HOST_15_PORT }}
+          remote_user: ${{ secrets.HOST_15_USERID }}
+          remote_key: ${{ secrets.HOST_15_PRI_KEY }}

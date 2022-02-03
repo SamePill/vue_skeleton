@@ -6,10 +6,11 @@
 name: Deploy with sftp
 
 on:
+  # manually deploy
   workflow_dispatch:
     inputs:
       name:
-        description: 'vue skeleton sever side build manually'
+        description: 'vue skeleton build manually and deploy by sftp'
         required: true
         default: 'by SamePill'
       home:
@@ -39,17 +40,16 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      # - run: npm run build --if-present
       - run: npm run build --if-present
       # - run: npm test
 
       - name: deploy file to server
         uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
-          username: ${{ secrets.HOST_0814_USER_ID }}
-          server: ${{ secrets.HOST_0814 }}
-          ssh_private_key: ${{ secrets.HOST_0814_PROVATE_KEY }}
+          username: ${{ secrets.HOST_15_USERID }}
+          server: ${{ secrets.HOST_15_IP }}
+          ssh_private_key: ${{ secrets.HOST_15_PRI_KEY }}
           local_path: './build/*'
-          remote_path: '/var/www/react-app'
+          remote_path: ${{ env.HOST_REPO }}
           args: '-o ConnectTimeout=5'
 
